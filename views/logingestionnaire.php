@@ -6,6 +6,7 @@
     <title>GP du Monde - Connexion Gestionnaire</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
+        
         tailwind.config = {
             theme: {
                 extend: {
@@ -36,8 +37,11 @@
             font-family: 'Inter', sans-serif;
         }
     </style>
+    
 </head>
+
 <body class="h-full bg-gradient-to-br from-sage-600 via-sage-400 to-sage-700 overflow-hidden">
+    
     <!-- Background animated elements -->
     <div class="absolute inset-0 overflow-hidden">
         <div
@@ -167,6 +171,9 @@
             </div>
         </div>
     </div>
-        <script src="dist/login.js"></script>
+        <script type="module"  src="/dist/login.js"></script>
+
+        
+
 </body>
 </html>
