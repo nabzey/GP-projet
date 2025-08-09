@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr" class="h-full">
 <head>
@@ -83,16 +82,16 @@
             <div
                 class="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-8 shadow-2xl"
             >
-                <form class="space-y-6" action="" method="POST">
+                <form id="loginForm" class="space-y-6" method="POST">
                     <div>
                         <label
-                            for="email"
+                            for="username"
                             class="block text-sm font-medium text-white mb-2"
                             >Email professionnel</label
                         >
                         <input
-                            id="email"
-                            name="email"
+                            id="username"
+                            name="username"
                             type="email"
                             required
                             placeholder="gestionnaire@gpdumonde.com"
@@ -137,6 +136,9 @@
                         >
                     </div>
 
+                    <!-- Message d'erreur/succès -->
+                    <div id="message" class="text-center font-medium"></div>
+
                     <button
                         type="submit"
                         class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-xl text-sage-800 bg-white hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-all duration-200 transform hover:scale-105 shadow-xl"
@@ -158,8 +160,6 @@
                     </button>
                 </form>
             </div>
-
-            <!-- Footer -->
             <div class="text-center">
                 <p class="text-green-200 text-sm">
                     © 2025 M du Monde. Transport de colis mondial.
@@ -167,6 +167,6 @@
             </div>
         </div>
     </div>
-   <script type="module" src="dist/login.ts"></script>
+        <script src="dist/login.js"></script>
 </body>
 </html>

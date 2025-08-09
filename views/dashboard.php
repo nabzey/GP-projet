@@ -262,3 +262,23 @@
                                 <button class="bg-sage-700 text-white px-4 py-2 rounded-lg hover:bg-sage-800 transition-colors">
                                     Rechercher
                                 </button>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Actions rapides</label>
+                            <div class="space-y-2">
+                                <button class="w-full bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors">
+                                    Ajouter un colis
+                                </button>
+                                <button class="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                                    Voir tous les colis
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

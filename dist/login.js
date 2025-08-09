@@ -1,36 +1,20 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-const form = document.getElementById("loginForm");
-const messageElement = document.getElementById("message");
-form.addEventListener("submit", (e) => __awaiter(void 0, void 0, void 0, function* () {
+const form = document.querySelector("#login-form");
+form === null || form === void 0 ? void 0 : form.addEventListener("submit", async (e) => {
+    var _a, _b;
     e.preventDefault();
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-    try {
-        const response = yield fetch(`http://localhost:3000/users?username=${username}&password=${password}`);
-        const users = yield response.json();
-        if (users.length > 0) {
-            messageElement.textContent = "✅ Connexion réussie";
-            messageElement.style.color = "green";
-            localStorage.setItem("user", JSON.stringify(users[0]));
-            window.location.href = "/dashboard.html";
-        }
-        else {
-            messageElement.textContent = "❌ Nom d'utilisateur ou mot de passe incorrect";
-            messageElement.style.color = "red";
-        }
+    const username = (((_a = document.querySelector("#username")) === null || _a === void 0 ? void 0 : _a.value) || "").trim();
+    const password = (((_b = document.querySelector("#password")) === null || _b === void 0 ? void 0 : _b.value) || "").trim();
+    // Appel vers ton JSON Server
+    const response = await fetch("http://localhost:3000/users");
+    const users = await response.json();
+    // Vérification si l'utilisateur existe
+    const userFound = users.find((u) => u.username === username && u.password === password);
+    if (userFound) {
+        alert("Connexion réussie !");
+        window.location.href = "dashboard.php";
     }
-    catch (error) {
-        console.error("Erreur :", error);
-        messageElement.textContent = "⚠️ Problème de connexion au serveur";
-        messageElement.style.color = "orange";
+    else {
+        alert("Nom d'utilisateur ou mot de passe incorrect !");
     }
-}));
+});
