@@ -1,62 +1,44 @@
-// Interface pour typer les utilisateurs
-export interface User {
-    id: number;
-    username: string;
-    password: string;
-}
+const form = document.getElementById("loginForm") as HTMLFormElement;
+const messageElement = document.getElementById("message") as HTMLParagraphElement;
 
-const form = document.querySelector<HTMLFormElement>("#loginForm"); // Changé de #login-form à #loginForm
-
-form?.addEventListener("submit", async (e: Event) => {
+form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const username = (document.querySelector<HTMLInputElement>("#username")?.value || "").trim();
-    const password = (document.querySelector<HTMLInputElement>("#password")?.value || "").trim();
-    
-    // Afficher un message de chargement
-    const messageDiv = document.querySelector<HTMLElement>("#message");
-    if (messageDiv) {
-        messageDiv.innerHTML = '<span class="text-blue-300">Connexion en cours...</span>';
-    }
+    const username = (document.getElementById("username") as HTMLInputElement).value;
+    const password = (document.getElementById("password") as HTMLInputElement).value;
+
+    console.log("Tentative de connexion:", username);
 
     try {
-        // Appel vers ton JSON Server
-        const response = await fetch("http://localhost:3000/users");
+        // Récupérer tous les utilisateurs depuis json-server
+        console.log("Appel API...");
+        const response = await fetch(`http://localhost:3001/users`);
         
-        // Vérifier si la réponse est OK
         if (!response.ok) {
             throw new Error(`Erreur HTTP: ${response.status}`);
         }
         
-        const users: User[] = await response.json();
+        const users = await response.json();
+        console.log("Données reçues:", users);
+        const user = users.find((u: any) => u.username === username && u.password === password);
+        console.log("Utilisateur trouvé:", user);
 
-        // Vérification si l'utilisateur existe
-        const userFound = users.find((u: User) => u.username === username && u.password === password);
-
-        if (userFound) {
-            // Succès - afficher message et rediriger
-            if (messageDiv) {
-                messageDiv.innerHTML = '<span class="text-green-300">✅ Connexion réussie !</span>';
-            }
+        if (user) {
+            messageElement.textContent = "✅ Connexion réussie";
+            messageElement.style.color = "green";
+            localStorage.setItem("user", JSON.stringify(user));
             
-            // Redirection après un court délai
+            // Rediriger vers le dashboard
             setTimeout(() => {
-                window.location.href = "dashboard";
+                window.location.href = "/dashboard";
             }, 1000);
-            
         } else {
-            // Échec de la connexion
-            if (messageDiv) {
-                messageDiv.innerHTML = '<span class="text-red-300">❌ Nom d\'utilisateur ou mot de passe incorrect !</span>';
-            }
+            messageElement.textContent = "❌ Email ou mot de passe incorrect";
+            messageElement.style.color = "red";
         }
-        
     } catch (error) {
-        console.error('Erreur lors de la connexion:', error);
-        
-        // Afficher un message d'erreur plus détaillé
-        if (messageDiv) {
-            messageDiv.innerHTML = '<span class="text-red-300">❌ Erreur de connexion au serveur. Vérifiez que JSON Server est démarré.</span>';
-        }
+        console.error("Erreur :", error);
+        messageElement.textContent = "⚠️ Problème de connexion au serveur";
+        messageElement.style.color = "orange";
     }
 });

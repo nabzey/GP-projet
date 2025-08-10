@@ -86,7 +86,7 @@
             <div
                 class="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-8 shadow-2xl"
             >
-                <form id="loginForm" class="space-y-6" method="POST">
+                <form class="space-y-6" method="POST">
                     <div>
                         <label
                             for="username"
@@ -100,6 +100,7 @@
                             required
                             placeholder="gestionnaire@gpdumonde.com"
                             class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-green-200 focus:ring-2 focus:ring-green-400 focus:border-transparent transition-all duration-200"
+                            value="<?php echo htmlspecialchars($_POST['username'] ?? ''); ?>"
                         />
                     </div>
 
@@ -140,8 +141,13 @@
                         >
                     </div>
 
-                    <!-- Message d'erreur/succès -->
-                    <div id="message" class="text-center font-medium"></div>
+                    <!-- Message d'erreur -->
+                    <?php if (isset($_SESSION['login_error'])): ?>
+                        <div class="text-center font-medium">
+                            <span class="text-red-300">❌ <?php echo htmlspecialchars($_SESSION['login_error']); ?></span>
+                        </div>
+                        <?php unset($_SESSION['login_error']); // Supprimer le message après affichage ?>
+                    <?php endif; ?>
 
                     <button
                         type="submit"
@@ -166,14 +172,12 @@
             </div>
             <div class="text-center">
                 <p class="text-green-200 text-sm">
-                    © 2025 M du Monde. Transport de colis mondial.
+                    © 2025 MIKEY TOUR. Transport de colis mondial.
                 </p>
             </div>
         </div>
     </div>
         <script type="module"  src="/dist/login.js"></script>
-
-        
 
 </body>
 </html>

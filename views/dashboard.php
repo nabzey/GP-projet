@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <title>GP du Monde - Dashboard Gestionnaire</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -29,8 +30,11 @@
         }
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         body { font-family: 'Inter', sans-serif; }
+        #map { height: 400px; width: 100%; border-radius: 1rem; }
     </style>
 </head>
 <body class="h-full">
@@ -167,6 +171,12 @@
                     </div>
                 </div>
 
+                <!-- Carte de Suivi des Colis -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm mb-8">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Suivi des Cargaisons en Temps Réel</h3>
+                    <div id="map"></div>
+                </div>
+
                 <!-- Recent Activity -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <div class="bg-white rounded-2xl p-6 shadow-sm">
@@ -280,5 +290,9 @@
             </div>
         </main>
     </div>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Script de carte transpilé depuis TypeScript -->
+    <script src="/dist/map.js"></script>
 </body>
 </html>

@@ -28,16 +28,44 @@
         }
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         body { font-family: 'Inter', sans-serif; }
+        #map { height: 400px; width: 100%; border-radius: 1rem; }
     </style>
 </head>
 <body class="h-full bg-gray-50">
+    
+    <!-- Hero Section with Search -->
+    <div class="relative min-h-screen bg-gradient-to-br from-sage-600 via-sage-400 to-sage-700 overflow-hidden">
+        <!-- Background animated elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute -top-4 -left-4 w-72 h-72 bg-green-300/30 rounded-full blur-3xl animate-pulse"></div>
+            <div class="absolute -bottom-8 -right-4 w-72 h-72 bg-lime-300/20 rounded-full blur-3xl animate-pulse"></div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-emerald-300/25 rounded-full blur-3xl animate-pulse"></div>
+        </div>
+        
+        <div class="relative z-10 flex flex-col items-center justify-center min-h-screen px-6">
+            <!-- Header -->
+            <div class="text-center mb-12">
+                <div class="animate-bounce mb-6">
+                    <div class="mx-auto w-24 h-24 bg-white rounded-2xl shadow-2xl flex items-center justify-center">
+                        <svg class="w-12 h-12 text-sage-700" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                </div>
+                <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">Suivez vos Colis</h1>
+                <p class="text-xl text-green-100 mb-2">Service de Suivi en Temps Réel</p>
+                <p class="text-lg text-green-200">GP du Monde - Transport Sénégal ↔ France</p>
+            </div>
+
                 <!-- Search Form -->
                 <div class="max-w-2xl mx-auto">
                     <div class="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-8">
                         <h2 class="text-2xl font-semibold text-white mb-6">Suivre votre colis</h2>
-                        <form class="space-y-6" action="#" method="GET">
+                        <form id="trackingForm" class="space-y-6">
                             <div>
                                 <input type="text" 
                                        id="trackingCode" 
@@ -62,16 +90,16 @@
         </div>
     </div>
 
-    <!-- Example Results Section (Static Demo) -->
+    <!-- Results Section (Dynamic) -->
     <div class="py-16 px-6 max-w-7xl mx-auto">
-        <!-- Package Found Example -->
-        <div class="mb-8">
+        <!-- Package Found Section -->
+        <div id="resultat-section" class="mb-8" style="display: none;">
             <div class="bg-white rounded-3xl shadow-2xl overflow-hidden">
                 <div class="bg-gradient-to-r from-sage-600 via-green-600 to-sage-500 p-8 text-white">
                     <div class="flex items-center justify-between">
                         <div>
                             <h3 class="text-2xl font-bold mb-2">Colis trouvé !</h3>
-                            <p class="text-green-100">Code de suivi: <span class="font-mono bg-white/20 px-3 py-1 rounded-lg">GP2025001234</span></p>
+                            <p class="text-green-100">Code de suivi: <span id="colis-code" class="font-mono bg-white/20 px-3 py-1 rounded-lg"></span></p>
                         </div>
                         <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center">
                             <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
@@ -87,50 +115,8 @@
                         <h4 class="text-xl font-semibold text-gray-900 mb-6">Suivi du colis</h4>
                         <div class="relative">
                             <div class="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-200"></div>
-                            
-                            <div class="relative flex items-center mb-6">
-                                <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center z-10">
-                                    <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                    </svg>
-                                </div>
-                                <div class="ml-4">
-                                    <div class="font-semibold text-gray-900">Colis expédié</div>
-                                    <div class="text-sm text-gray-500">Le 15 Janvier 2025 à 10:30</div>
-                                </div>
-                            </div>
-
-                            <div class="relative flex items-center mb-6">
-                                <div class="w-8 h-8 bg-sage-500 rounded-full flex items-center justify-center z-10 animate-pulse">
-                                    <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M4 3a2 2 0 100 4h12a2 2 0 100-4H4z"/>
-                                    </svg>
-                                </div>
-                                <div class="ml-4">
-                                    <div class="font-semibold text-sage-600">En transit - Cargaison Maritime</div>
-                                    <div class="text-sm text-gray-500">Arrive dans 3 jours</div>
-                                    <div class="text-sm text-sage-600 font-medium">Actuellement en mer</div>
-                                </div>
-                            </div>
-
-                            <div class="relative flex items-center mb-6">
-                                <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center z-10">
-                                    <div class="w-2 h-2 bg-gray-500 rounded-full"></div>
-                                </div>
-                                <div class="ml-4">
-                                    <div class="font-semibold text-gray-400">En attente - Arrivée prévue</div>
-                                    <div class="text-sm text-gray-400">Prévu le 25 Janvier 2025</div>
-                                </div>
-                            </div>
-
-                            <div class="relative flex items-center">
-                                <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center z-10">
-                                    <div class="w-2 h-2 bg-gray-500 rounded-full"></div>
-                                </div>
-                                <div class="ml-4">
-                                    <div class="font-semibold text-gray-400">Prêt pour récupération</div>
-                                    <div class="text-sm text-gray-400">En attente</div>
-                                </div>
+                            <div id="timeline-container">
+                                <!-- Timeline sera générée dynamiquement par JavaScript -->
                             </div>
                         </div>
                     </div>
@@ -146,9 +132,9 @@
                                 </div>
                                 <h5 class="font-semibold text-gray-900 ml-3">Expéditeur</h5>
                             </div>
-                            <p class="text-gray-700 font-medium">Amadou Diallo</p>
-                            <p class="text-sm text-gray-500">Dakar, Sénégal</p>
-                            <p class="text-sm text-gray-500">+221 77 123 45 67</p>
+                            <p id="expediteur-nom" class="text-gray-700 font-medium"></p>
+                            <p id="expediteur-localisation" class="text-sm text-gray-500"></p>
+                            <p id="expediteur-telephone" class="text-sm text-gray-500"></p>
                         </div>
 
                         <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-2xl p-6">
@@ -160,9 +146,9 @@
                                 </div>
                                 <h5 class="font-semibold text-gray-900 ml-3">Destinataire</h5>
                             </div>
-                            <p class="text-gray-700 font-medium">Marie Dupont</p>
-                            <p class="text-sm text-gray-500">Marseille, France</p>
-                            <p class="text-sm text-gray-500">+33 6 12 34 56 78</p>
+                            <p id="destinataire-nom" class="text-gray-700 font-medium"></p>
+                            <p id="destinataire-localisation" class="text-sm text-gray-500"></p>
+                            <p id="destinataire-telephone" class="text-sm text-gray-500"></p>
                         </div>
 
                         <div class="bg-gradient-to-r from-lime-50 to-lime-100 rounded-2xl p-6">
@@ -174,10 +160,16 @@
                                 </div>
                                 <h5 class="font-semibold text-gray-900 ml-3">Détails Colis</h5>
                             </div>
-                            <p class="text-gray-700 font-medium">Poids: 2.5 kg</p>
-                            <p class="text-sm text-gray-500">Type: Produit Alimentaire</p>
-                            <p class="text-sm text-gray-500">Prix: 15,000 FCFA</p>
+                            <p id="colis-poids" class="text-gray-700 font-medium"></p>
+                            <p id="colis-type" class="text-sm text-gray-500"></p>
+                            <p id="colis-prix" class="text-sm text-gray-500"></p>
                         </div>
+                    </div>
+
+                    <!-- Carte de Suivi en Temps Réel -->
+                    <div class="mb-8">
+                        <h4 class="text-xl font-semibold text-gray-900 mb-4">Position Actuelle de votre Colis</h4>
+                        <div id="map"></div>
                     </div>
 
                     <!-- Action Buttons -->
@@ -196,8 +188,8 @@
             </div>
         </div>
 
-        <!-- Package Not Found Example (Hidden by default) -->
-        <div class="hidden">
+        <!-- Package Not Found Section -->
+        <div id="non-trouve-section" style="display: none;">
             <div class="bg-white rounded-3xl shadow-2xl p-12 text-center">
                 <div class="w-24 h-24 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
                     <svg class="w-12 h-12 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -234,4 +226,42 @@
                     </div>
                     
                     <div class="text-center">
-                        <div class="w-12
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                            <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
+                            </svg>
+                        </div>
+                        <h4 class="font-semibold text-gray-900">Objets Personnels</h4>
+                        <p class="text-sm text-gray-500 mt-1">Vêtements, accessoires et souvenirs</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                            <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <h4 class="font-semibold text-gray-900">Documents</h4>
+                        <p class="text-sm text-gray-500 mt-1">Papiers administratifs et courriers</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                            <svg class="w-6 h-6 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                            </svg>
+                        </div>
+                        <h4 class="font-semibold text-gray-900">Autres Produits</h4>
+                        <p class="text-sm text-gray-500 mt-1">Électronique, médicaments, etc.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Script de suivi transpilé depuis TypeScript -->
+    <script src="/dist/suivi.js"></script>
+</body>
+</html>

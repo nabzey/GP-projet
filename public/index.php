@@ -61,19 +61,91 @@ if (preg_match('/\.(js|css|png|jpg|jpeg|gif|ico|svg)$/i', $path)) {
     exit;
 }
 
-// 2️⃣ Routes des pages (après la gestion des fichiers statiques)
+// 2️⃣ Fonction pour vérifier si l'utilisateur est connecté
+function isLoggedIn() {
+    return isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true;
+}
+
+// 3️⃣ Gestion de la connexion (traitement du formulaire de login)
+if ($path === '/logingestionnaire' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = $_POST['username'] ?? '';
+    $password = $_POST['password'] ?? '';
+    
+    // Lire les données utilisateur depuis db.json
+    $dbFile = __DIR__ . '/../db.json';
+    if (file_exists($dbFile)) {
+        $dbData = json_decode(file_get_contents($dbFile), true);
+        $users = $dbData['users'] ?? [];
+        
+        // Vérifier les identifiants
+        foreach ($users as $user) {
+            if ($user['username'] === $username && $user['password'] === $password) {
+                // Connexion réussie
+                $_SESSION['user_logged_in'] = true;
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['username'] = $user['username'];
+                
+                // Redirection vers le dashboard
+                header('Location: /dashboard');
+                exit;
+            }
+        }
+        
+        // Connexion échouée - stocker le message d'erreur
+        $_SESSION['login_error'] = 'Nom d\'utilisateur ou mot de passe incorrect !';
+    } else {
+        $_SESSION['login_error'] = 'Erreur système - base de données non trouvée';
+    }
+    
+    // Redirection vers la page de connexion avec erreur
+    header('Location: /logingestionnaire');
+    exit;
+}
+
+// 4️⃣ Gestion de la déconnexion
+if ($path === '/retour') {
+    // Détruire la session
+    session_unset();
+    session_destroy();
+    
+    // Redirection vers la page d'accueil
+    header('Location: /');
+    exit;
+}
+
+// 5️⃣ Routes des pages avec protection
 $routes = [
     '/'                 => '../views/acceuil.php',
     '/logingestionnaire'=> '../views/logingestionnaire.php',
     '/dashboard'        => '../views/dashboard.php',
     '/colis'            => '../views/colis.php',
     '/suivi'            => '../views/suivi.php',
-    '/retour'           => '../views/acceuil.php',
     '/cargaison'        => '../views/cargaison.php',
     '/transport'        => '../views/transport.php',
 ];
 
-// 3️⃣ Chargement de la bonne page
+// 6️⃣ Routes protégées (nécessitent une connexion)
+$protectedRoutes = [
+    '/dashboard',
+    '/colis', 
+    '/cargaison',
+    '/transport'
+];
+
+// 7️⃣ Vérification de l'accès aux routes protégées
+if (in_array($path, $protectedRoutes) && !isLoggedIn()) {
+    // Redirection vers la page de connexion si non connecté
+    header('Location: /logingestionnaire');
+    exit;
+}
+
+// 8️⃣ Si déjà connecté et tentative d'accès à la page de login, rediriger vers dashboard
+if ($path === '/logingestionnaire' && isLoggedIn()) {
+    header('Location: /dashboard');
+    exit;
+}
+
+// 9️⃣ Chargement de la bonne page
 if (array_key_exists($path, $routes)) {
     require_once __DIR__ . '/' . $routes[$path];
 } else {

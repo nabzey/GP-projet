@@ -1,6 +1,261 @@
 {
   "users": [
     { "id": 1, "username": "gestionnaire@gpdumonde.com", "password": "1234" }
+  ],
+  "cargaisons": [
+    {
+      "id": "CAR-2025-001",
+      "etat_global": "en_cours",
+      "type": "international",
+      "trajet": {
+        "depart": { "lat": 14.6937, "lng": -17.4441 },
+        "arrivee": { "lat": 43.2965, "lng": 5.3698 }
+      }
+    },
+    {
+      "id": "CAR-2025-002", 
+      "etat_global": "arrive",
+      "type": "international",
+      "trajet": {
+        "depart": { "lat": 14.6937, "lng": -17.4441 },
+        "arrivee": { "lat": 48.8566, "lng": 2.3522 }
+      }
+    },
+    {
+      "id": "CAR-2025-003",
+      "etat_global": "en_cours",
+      "type": "domestique",
+      "trajet": {
+        "depart": { "lat": 14.6937, "lng": -17.4441 },
+        "arrivee": { "lat": 16.0378, "lng": -16.5158 }
+      }
+    },
+    {
+      "id": "CAR-2025-004",
+      "etat_global": "arrive",
+      "type": "domestique",
+      "trajet": {
+        "depart": { "lat": 14.6937, "lng": -17.4441 },
+        "arrivee": { "lat": 14.3542, "lng": -16.9555 }
+      }
+    },
+    {
+      "id": "CAR-2025-005",
+      "etat_global": "en_cours",
+      "type": "domestique",
+      "trajet": {
+        "depart": { "lat": 14.6937, "lng": -17.4441 },
+        "arrivee": { "lat": 14.1333, "lng": -16.0833 }
+      }
+    }
+  ],
+  "colis": [
+    {
+      "id": "GP2025001234",
+      "expediteur": {
+        "nom": "Amadou Diallo",
+        "localisation": "Dakar, Sénégal",
+        "telephone": "+221 77 123 45 67"
+      },
+      "destinataire": {
+        "nom": "ARAMATA sow",
+        "localisation": "Paris, France",
+        "telephone": "+221 77 543 12 12"
+      },
+      "details": {
+        "poids": "2.5 kg",
+        "type": "Produit Alimentaire",
+        "prix": "15,000 FCFA"
+      },
+      "statut": "en_transit",
+      "derniere_mise_a_jour": "18 Janvier 2025 à 14:15",
+      "date_expedition": "18 Janvier 2025 à 08:00",
+      "date_arrivee_prevue": "19 Janvier 2025",
+      "position_actuelle": "En route vers Saint-Louis",
+      "cargaison_id": "CAR-2025-003",
+      "timeline": [
+        {
+          "statut": "expedie",
+          "description": "Colis expédié de Dakar",
+          "date": "18 Janvier 2025 à 08:00",
+          "completed": true
+        },
+        {
+          "statut": "en_transit",
+          "description": "En transit - Transport Routier",
+          "date": "Arrive demain",
+          "details": "En route vers Saint-Louis",
+          "completed": true,
+          "current": true
+        },
+        {
+          "statut": "en_attente",
+          "description": "En attente - Arrivée prévue",
+          "date": "Prévu le 19 Janvier 2025",
+          "completed": false
+        },
+        {
+          "statut": "pret",
+          "description": "Prêt pour récupération",
+          "date": "En attente",
+          "completed": false
+        }
+      ]
+    },
+    {
+      "id": "GP2025005678",
+      "expediteur": {
+        "nom": "Fatou Sall",
+        "localisation": "Dakar, Sénégal",
+        "telephone": "+221 76 987 65 43"
+      },
+      "destinataire": {
+        "nom": "Jean Martin",
+        "localisation": "Paris, France",
+        "telephone": "+33 7 89 12 34 56"
+      },
+      "details": {
+        "poids": "1.2 kg",
+        "type": "Vêtements",
+        "prix": "12,000 FCFA"
+      },
+      "statut": "arrive",
+      "derniere_mise_a_jour": "20 Janvier 2025 à 14:20",
+      "date_expedition": "10 Janvier 2025 à 09:15",
+      "date_arrivee_prevue": "20 Janvier 2025",
+      "position_actuelle": "Arrivé à Paris",
+      "cargaison_id": "CAR-2025-002",
+      "timeline": [
+        {
+          "statut": "expedie",
+          "description": "Colis expédié",
+          "date": "10 Janvier 2025 à 09:15",
+          "completed": true
+        },
+        {
+          "statut": "en_transit",
+          "description": "En transit - Cargaison Aérienne",
+          "date": "12 Janvier 2025",
+          "completed": true
+        },
+        {
+          "statut": "arrive",
+          "description": "Arrivé à destination",
+          "date": "20 Janvier 2025 à 14:20",
+          "completed": true,
+          "current": true
+        },
+        {
+          "statut": "pret",
+          "description": "Prêt pour récupération",
+          "date": "Disponible maintenant",
+          "completed": true
+        }
+      ]
+    },
+    {
+      "id": "GP2025003456",
+      "expediteur": {
+        "nom": "Moussa Ba",
+        "localisation": "Dakar, Sénégal",
+        "telephone": "+221 70 234 56 78"
+      },
+      "destinataire": {
+        "nom": "Awa Faye",
+        "localisation": "Thiès, Sénégal",
+        "telephone": "+221 76 345 67 89"
+      },
+      "details": {
+        "poids": "1.8 kg",
+        "type": "Vêtements et Accessoires",
+        "prix": "8,000 FCFA"
+      },
+      "statut": "arrive",
+      "derniere_mise_a_jour": "20 Janvier 2025 à 16:45",
+      "date_expedition": "19 Janvier 2025 à 09:30",
+      "date_arrivee_prevue": "20 Janvier 2025",
+      "position_actuelle": "Arrivé à Thiès",
+      "cargaison_id": "CAR-2025-004",
+      "timeline": [
+        {
+          "statut": "expedie",
+          "description": "Colis expédié de Dakar",
+          "date": "19 Janvier 2025 à 09:30",
+          "completed": true
+        },
+        {
+          "statut": "en_transit",
+          "description": "En transit - Transport Routier",
+          "date": "19 Janvier 2025 à 15:00",
+          "completed": true
+        },
+        {
+          "statut": "arrive",
+          "description": "Arrivé à destination",
+          "date": "20 Janvier 2025 à 16:45",
+          "completed": true,
+          "current": true
+        },
+        {
+          "statut": "pret",
+          "description": "Prêt pour récupération",
+          "date": "Disponible maintenant",
+          "completed": true
+        }
+      ]
+    },
+    {
+      "id": "GP2025007890",
+      "expediteur": {
+        "nom": "Ibrahima Sarr",
+        "localisation": "Dakar, Sénégal",
+        "telephone": "+221 77 890 12 34"
+      },
+      "destinataire": {
+        "nom": "Fatou Mbaye",
+        "localisation": "Kaolack, Sénégal",
+        "telephone": "+221 75 456 78 90"
+      },
+      "details": {
+        "poids": "3.2 kg",
+        "type": "Produits Cosmétiques",
+        "prix": "12,500 FCFA"
+      },
+      "statut": "en_transit",
+      "derniere_mise_a_jour": "21 Janvier 2025 à 11:20",
+      "date_expedition": "21 Janvier 2025 à 07:00",
+      "date_arrivee_prevue": "22 Janvier 2025",
+      "position_actuelle": "En route vers Kaolack",
+      "cargaison_id": "CAR-2025-005",
+      "timeline": [
+        {
+          "statut": "expedie",
+          "description": "Colis expédié de Dakar",
+          "date": "21 Janvier 2025 à 07:00",
+          "completed": true
+        },
+        {
+          "statut": "en_transit",
+          "description": "En transit - Transport Routier",
+          "date": "Arrive demain",
+          "details": "En route vers Kaolack",
+          "completed": true,
+          "current": true
+        },
+        {
+          "statut": "en_attente",
+          "description": "En attente - Arrivée prévue",
+          "date": "Prévu le 22 Janvier 2025",
+          "completed": false
+        },
+        {
+          "statut": "pret",
+          "description": "Prêt pour récupération",
+          "date": "En attente",
+          "completed": false
+        }
+      ]
+    }
   ]
 }
 
