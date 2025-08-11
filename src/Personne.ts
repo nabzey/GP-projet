@@ -1,4 +1,4 @@
-abstract class Personne {
+export abstract class Personne {
     protected id: number;
     protected nom: string;
     protected prenom: string;
