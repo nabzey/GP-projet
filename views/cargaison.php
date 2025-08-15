@@ -109,65 +109,7 @@
             <section class="px-6 py-8">
     <h2 class="text-2xl font-semibold text-gray-800 mb-6">Liste des Cargaisons</h2>
 
-    <div class="overflow-x-auto bg-white rounded-xl shadow">
-        <table class="min-w-full divide-y divide-gray-200 text-sm">
-            <thead class="bg-sage-700 text-white">
-                <tr>
-                    <th class="px-4 py-3 text-left">Numéro</th>
-                    <th class="px-4 py-3 text-left">Type</th>
-                    <th class="px-4 py-3 text-left">Poids Max</th>
-                    <th class="px-4 py-3 text-left">Trajet</th>
-                    <th class="px-4 py-3 text-left">Distance</th>
-                    <th class="px-4 py-3 text-left">État</th>
-                    <th class="px-4 py-3 text-left">Statut</th>
-                    <th class="px-4 py-3 text-left">Prix Total</th>
-                </tr>
-            </thead>
-            <tbody class="bg-white divide-y divide-gray-100 text-gray-700">
-                <tr>
-                    <td class="px-4 py-3">CAR-2025-001</td>
-                    <td class="px-4 py-3">Maritime</td>
-                    <td class="px-4 py-3">1200 kg</td>
-                    <td class="px-4 py-3">Dakar → Marseille</td>
-                    <td class="px-4 py-3">4000 km</td>
-                    <td class="px-4 py-3">
-                        <span class="inline-block px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-800 rounded-full">En attente</span>
-                    </td>
-                    <td class="px-4 py-3">
-                        <span class="inline-block px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">Ouverte</span>
-                    </td>
-                    <td class="px-4 py-3">3 200 000 F</td>
-                </tr>
-                <tr>
-                    <td class="px-4 py-3">CAR-2025-002</td>
-                    <td class="px-4 py-3">Aérienne</td>
-                    <td class="px-4 py-3">800 kg</td>
-                    <td class="px-4 py-3">Dakar → Paris</td>
-                    <td class="px-4 py-3">4200 km</td>
-                    <td class="px-4 py-3">
-                        <span class="inline-block px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">En cours</span>
-                    </td>
-                    <td class="px-4 py-3">
-                        <span class="inline-block px-2 py-1 text-xs font-medium bg-red-100 text-red-800 rounded-full">Fermée</span>
-                    </td>
-                    <td class="px-4 py-3">2 100 000 F</td>
-                </tr>
-                <tr>
-                    <td class="px-4 py-3">CAR-2025-003</td>
-                    <td class="px-4 py-3">Routière</td>
-                    <td class="px-4 py-3">1000 kg</td>
-                    <td class="px-4 py-3">Dakar → Bamako</td>
-                    <td class="px-4 py-3">1200 km</td>
-                    <td class="px-4 py-3">
-                        <span class="inline-block px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">Arrivé</span>
-                    </td>
-                    <td class="px-4 py-3">
-                        <span class="inline-block px-2 py-1 text-xs font-medium bg-green-200 text-green-900 rounded-full">Fermée</span>
-                    </td>
-                    <td class="px-4 py-3">1 800 000 F</td>
-                </tr>
-                <!-- Tu peux ajouter dynamiquement les lignes via PHP ou JS -->
-            </tbody>
-        </table>
-    </div>
+   
 </section>
+<script type="module" src="/dist/Cargaison.js"></script></body>
+</html>

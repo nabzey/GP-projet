@@ -1,5 +1,4 @@
-"use strict";
-class Personne {
+export class Personne {
     constructor(id, nom, prenom, email, adresse, telephone = '') {
         this.id = id;
         this.nom = nom;

@@ -35,11 +35,20 @@ export class Colis {
     public getCode(): string {
         return this.code;
     }
+    public getId(): number {
+        return this.id;
+    }
     public getPrix(): number {
         return this.prix;
     }
     public setPrix(prix: number) {
         this.prix = prix < 10000 ? 10000 : prix;
+    }
+    public getPoids(): number {
+        return this.poids;
+    }
+    public getTypeCargaison(): string {
+        return this.type_cargaison;
     }
     private generateCode(): string {
         return 'C' + Math.random().toString(36).substr(2, 9).toUpperCase();

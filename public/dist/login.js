@@ -9,7 +9,7 @@ form.addEventListener("submit", async (e) => {
     try {
         // Récupérer tous les utilisateurs depuis json-server
         console.log("Appel API...");
-        const response = await fetch(`https://jsontypescript.onrender.com/`);
+        const response = await fetch(`http://localhost:3001/users`);
         if (!response.ok) {
             throw new Error(`Erreur HTTP: ${response.status}`);
         }

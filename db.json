@@ -1,0 +1,157 @@
+{
+  "users": [
+    { "id": 1, "username": "gestionnaire@gpdumonde.com", "password": "1234" }
+  ],
+  "cargaisons": [
+    {
+      "id": "CAR-2025-001",
+      "numero": "CAR-2025-001",
+      "poidsMax": 1200,
+      "typeCargaison": "international",
+      "lieu_depart": "Dakar",
+      "lieu_arriver": "Marseille",
+      "distance": 4000,
+      "date_depart": "2025-01-10T09:00:00Z",
+      "date_arrivee": "2025-01-12T18:00:00Z",
+      "etatGlobal": "en_cours",
+      "etatAvancement": "en_attente",
+      "prix": 3200000,
+      "colis": ["GP2025001234"]
+    },
+    {
+      "id": "CAR-2025-002",
+      "numero": "CAR-2025-002",
+      "poidsMax": 800,
+      "typeCargaison": "international",
+      "lieu_depart": "Dakar",
+      "lieu_arriver": "Paris",
+      "distance": 4200,
+      "date_depart": "2025-01-10T09:15:00Z",
+      "date_arrivee": "2025-01-20T14:20:00Z",
+      "etatGlobal": "arrive",
+      "etatAvancement": "en_cours",
+      "prix": 2100000,
+      "colis": ["GP2025005678"]
+    },
+    {
+      "id": "CAR-2025-003",
+      "numero": "CAR-2025-003",
+      "poidsMax": 1000,
+      "typeCargaison": "domestique",
+      "lieu_depart": "Dakar",
+      "lieu_arriver": "Saint-Louis",
+      "distance": 1200,
+      "date_depart": "2025-01-18T08:00:00Z",
+      "date_arrivee": "2025-01-19T14:15:00Z",
+      "etatGlobal": "en_cours",
+      "etatAvancement": "en_transit",
+      "prix": 1800000,
+      "colis": ["GP2025001234"]
+    },
+    {
+      "id": "CAR-2025-004",
+      "numero": "CAR-2025-004",
+      "poidsMax": 900,
+      "typeCargaison": "domestique",
+      "lieu_depart": "Dakar",
+      "lieu_arriver": "Thiès",
+      "distance": 300,
+      "date_depart": "2025-01-19T09:30:00Z",
+      "date_arrivee": "2025-01-20T16:45:00Z",
+      "etatGlobal": "arrive",
+      "etatAvancement": "arrive",
+      "prix": 800000,
+      "colis": ["GP2025003456"]
+    },
+    {
+      "id": "CAR-2025-005",
+      "numero": "CAR-2025-005",
+      "poidsMax": 1100,
+      "typeCargaison": "domestique",
+      "lieu_depart": "Dakar",
+      "lieu_arriver": "Kaolack",
+      "distance": 200,
+      "date_depart": "2025-01-21T07:00:00Z",
+      "date_arrivee": "2025-01-22T11:20:00Z",
+      "etatGlobal": "en_cours",
+      "etatAvancement": "en_transit",
+      "prix": 1250000,
+      "colis": ["GP2025007890"]
+    }
+  ],
+  "colis": [
+    {
+      "id": "GP2025001234",
+      "poids": 2.5,
+      "type_cargaison": "Produit Alimentaire",
+      "etatColis": "en_transit",
+      "expediteur": {
+        "nom": "Amadou Diallo",
+        "localisation": "Dakar, Sénégal",
+        "telephone": "+221 77 123 45 67"
+      },
+      "destinataire": {
+        "nom": "ARAMATA sow",
+        "localisation": "Paris, France",
+        "telephone": "+221 77 543 12 12"
+      },
+      "prix": 15000,
+      "cargaison_id": "CAR-2025-003"
+    },
+    {
+      "id": "GP2025005678",
+      "poids": 1.2,
+      "type_cargaison": "Vêtements",
+      "etatColis": "arrive",
+      "expediteur": {
+        "nom": "Fatou Sall",
+        "localisation": "Dakar, Sénégal",
+        "telephone": "+221 76 987 65 43"
+      },
+      "destinataire": {
+        "nom": "Jean Martin",
+        "localisation": "Paris, France",
+        "telephone": "+33 7 89 12 34 56"
+      },
+      "prix": 12000,
+      "cargaison_id": "CAR-2025-002"
+    },
+    {
+      "id": "GP2025003456",
+      "poids": 1.8,
+      "type_cargaison": "Vêtements et Accessoires",
+      "etatColis": "arrive",
+      "expediteur": {
+        "nom": "Moussa Ba",
+        "localisation": "Dakar, Sénégal",
+        "telephone": "+221 70 234 56 78"
+      },
+      "destinataire": {
+        "nom": "Awa Faye",
+        "localisation": "Thiès, Sénégal",
+        "telephone": "+221 76 345 67 89"
+      },
+      "prix": 8000,
+      "cargaison_id": "CAR-2025-004"
+    },
+    {
+      "id": "GP2025007890",
+      "poids": 3.2,
+      "type_cargaison": "Produits Cosmétiques",
+      "etatColis": "en_transit",
+      "expediteur": {
+        "nom": "Ibrahima Sarr",
+        "localisation": "Dakar, Sénégal",
+        "telephone": "+221 77 890 12 34"
+      },
+      "destinataire": {
+        "nom": "Fatou Mbaye",
+        "localisation": "Kaolack, Sénégal",
+        "telephone": "+221 75 456 78 90"
+      },
+      "prix": 12500,
+      "cargaison_id": "CAR-2025-005"
+    }
+  ]
+}
+
